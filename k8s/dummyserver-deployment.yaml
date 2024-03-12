@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummyserver # This name will become the basis for the ReplicaSets and Pods which are created later
+  labels:
+    app: dummyserver
+spec:
+  replicas: 2 
+  selector: # The .spec.selector field defines how the created ReplicaSet finds which Pods to manage.
+    matchLabels:
+      app: dummyserver
+  template:
+    metadata:
+      labels:
+        app: dummyserver
+    spec:
+      containers:
+        - name: dummyserver
+          image: dummyserver:v1.0
+          ports:
+            - containerPort: 8081

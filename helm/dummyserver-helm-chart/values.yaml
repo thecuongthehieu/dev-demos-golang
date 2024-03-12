@@ -1,0 +1,3 @@
+dummyserver:
+  replicas: 3
+ 

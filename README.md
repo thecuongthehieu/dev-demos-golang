@@ -1,1 +1,2 @@
-# dev-demos-golang
+# Dev Demos With Golang 
+The first step is the hardest!
