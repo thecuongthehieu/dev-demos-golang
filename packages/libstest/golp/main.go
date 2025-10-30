@@ -19,10 +19,16 @@ bin x3;
 
 func main() {
 	lp := golp.NewLP(0, 4)
-	lp.AddConstraintSparse([]golp.Entry{{0, 1.0}, {1, 1.0}}, golp.LE, 5.0)
-	lp.AddConstraintSparse([]golp.Entry{{0, 2.0}, {1, -1.0}}, golp.GE, 0.0)
-	lp.AddConstraintSparse([]golp.Entry{{0, 1.0}, {1, 3.0}}, golp.GE, 0.0)
-	lp.AddConstraintSparse([]golp.Entry{{2, 1.0}, {3, 1.0}}, golp.GE, 0.5)
+	// lp.AddConstraintSparse([]golp.Entry{{0, 1.0}, {1, 1.0}}, golp.LE, 5.0)
+	// lp.AddConstraintSparse([]golp.Entry{{0, 2.0}, {1, -1.0}}, golp.GE, 0.0)
+	// lp.AddConstraintSparse([]golp.Entry{{0, 1.0}, {1, 3.0}}, golp.GE, 0.0)
+	// lp.AddConstraintSparse([]golp.Entry{{2, 1.0}, {3, 1.0}}, golp.GE, 0.5)
+
+	lp.AddConstraint([]float64{1.0, 1.0, 0.0, 0.0}, golp.LE, 5.0)
+	lp.AddConstraint([]float64{2.0, -1.0, 0.0, 0.0}, golp.GE, 0.0)
+	lp.AddConstraint([]float64{1.0, 3.0, 0.0, 0.0}, golp.GE, 0.0)
+	lp.AddConstraint([]float64{0.0, 0.0, 1.0, 1.0}, golp.GE, 0.5)
+
 	lp.SetObjFn([]float64{-1.0, -2.0, 0.1, 3.0})
 	lp.SetBinary(2, true)
 	lp.Solve()
